@@ -1,0 +1,57 @@
+Sub JuhlianRunMacroonallsheets()
+    
+    Dim xSheet As Worksheet
+    Application.ScreenUpdating = False
+    For Each xSheet In Worksheets
+        xSheet.Select
+        Call HW2_Easy
+   
+    Next
+    Application.ScreenUpdating = True
+    
+End Sub
+
+Sub HW2_Easy()
+Dim lrow As Double
+Dim Total As Double
+Dim Start As String
+Dim Ticker As String
+Dim Summary_Table_Row As Double
+
+Total = 0
+Summary_Table_Row = 2
+lrow = Cells(Rows.Count, "A").End(xlUp).Row
+
+    Range("I1").Value = "Ticker"
+    Range("J1").Value = "Total Stock Volume"
+    
+        
+        
+            For i = 2 To lrow
+                If Cells(i + 1, 1).Value <> Cells(i, 1).Value Then
+        
+        
+                Ticker = Cells(i, 1).Value
+        
+                Total = Total + Cells(i, 7).Value
+        
+                Range("I" & Summary_Table_Row).Value = Ticker
+        
+                Range("J" & Summary_Table_Row).Value = Total
+        
+            
+                Summary_Table_Row = Summary_Table_Row + 1
+            
+                Total = 0
+        
+        Else
+                Total = Total + Cells(i, 7).Value
+            
+    End If
+    
+    Next i
+    
+
+
+End Sub
+
